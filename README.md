@@ -18,6 +18,10 @@ Give examples
 The data is taken from Kaggle:  
 https://www.kaggle.com/mczielinski/bitcoin-historical-data
 
+### models
+
+each model is contained in a script and posses a function "predict" that takes a panda dataframe and predict the "Open" value of the next time interval
+
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
