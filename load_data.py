@@ -1,11 +1,5 @@
-import numpy as np
 import pandas as pd
 
-
-"""
-script used to compute the data
-
-"""
 
 data_path = "./data/"
 date = "Date"
@@ -43,4 +37,3 @@ if __name__ == '__main__':
     data = load_range(start_date="01/09/2018",
                       end_date="10/09/2018",
                       data_names=[opening, close, high, low])
-
