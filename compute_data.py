@@ -2,6 +2,11 @@ import numpy as np
 import pandas as pd
 
 
+"""
+script used to compute the data
+
+"""
+
 data_path = "./data/"
 date = "Date"
 close = "Dernier"
