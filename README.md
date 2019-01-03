@@ -17,10 +17,22 @@ Give examples
 #### Data
 The data is taken from Kaggle:  
 https://www.kaggle.com/mczielinski/bitcoin-historical-data
+but can be any csv from financial data
 
 ### models
 
 each model is contained in a script and posses a function "predict" that takes a panda dataframe and predict the "Open" value of the next time interval
+
+
+### TODO
+
+- Intégrer dans la fonction load_data.load_csv un moyen que la date de sortie soit toujours au même format
+- Rajouter dans le script preprocessing une fonction qui coupe les données selon leur date
+- Rajouter dans le script preprocessing une fonction qui interpole les données manquantes (ex les we
+dans le cas du FOREX ou des actions)
+- Ecrire une métrique mathématique pour comparer deux séries temporelles 
+- Ecrire un script naive_predictor comme benchmark avec comme seule stratégie une moyenne glissante sur les 
+dernières réalisations
 
 ### Installing
 
