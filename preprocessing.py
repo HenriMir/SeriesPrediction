@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+from load_data import load_csv
+
 
 file_path = "./data/bitstampUSD_1-min_data_2012-01-01_to_2018-06-27.csv"
 
@@ -75,7 +77,7 @@ def convert2array(data, values):
 
 
 if __name__ == "__main__":
-    data = read_data(file_path=file_path)
+    data = load_csv(csv_name="EUR_USD Historical Data.csv")
     data = select_data(data=data, start="2016/08/10", stop="2016/08/11")
     data = format_time_step(data=data, step="H")
 

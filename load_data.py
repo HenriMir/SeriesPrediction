@@ -16,7 +16,8 @@ data_names = [date, close, opening, high]
 
 def load_csv(csv_name, names_dict=None):
     """
-    load the csv in data and set the index on the date
+    load the csv in data
+    date format of the output is YYYY-MM-DD
     :param csv_name: str
     :param names_dict: dictionnaire de clés: Date, Price, Open, High, Low et Change avec en valeur
                         le nom de la variable associee
@@ -40,6 +41,8 @@ def load_csv(csv_name, names_dict=None):
 
     #df = df.set_index(cst.DATE)
 
+    df[cst.DATE] = pd.to_datetime(df[cst.DATE], yearfirst=True)
+
     return df
 
 
@@ -49,3 +52,6 @@ if __name__ == '__main__':
     df = load_csv(csv_name="EUR_USD Historical Data.csv")
     print(df.keys())
     print(df["Date"].head())
+
+    print(type(df["Date"].values[0]))
+
