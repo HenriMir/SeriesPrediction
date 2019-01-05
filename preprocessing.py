@@ -19,14 +19,11 @@ def select_data(dataframe, start=None, stop=None):
 
     """
 
-    # generate an index full of true
-    index = ~dataframe[cst.DATE].isnull()
     if start is not None:
-        index *= dataframe[cst.DATE] >= pd.to_datetime(start, format="%Y-%m-%d")
-    if stop is not None:
-        index *= dataframe[cst.DATE] < pd.to_datetime(stop, format="%Y-%m-%d")
+        dataframe = dataframe[dataframe[cst.DATE] >= pd.to_datetime(start, format="%Y-%m-%d")]
 
-    dataframe = dataframe.loc[index, :]
+    if stop is not None:
+        dataframe = dataframe[dataframe[cst.DATE] <= pd.to_datetime(stop, format="%Y-%m-%d")]
 
     if dataframe.shape[0] == 0:
         raise Exception("null dataframe")
@@ -61,14 +58,13 @@ def train_test_split(data, train_ratio, method=0):
 
 
 if __name__ == "__main__":
-    data = load_csv(csv_name="EUR_USD Historical Data.csv")
+
+    names_dict={"Date" : "Local time"}
+    data = load_csv(csv_name="EURCAD_Ticks_05.12.2017-05.12.2017.csv", names_dict=names_dict)
+
     print(data["Date"].head())
 
-    data = select_data(dataframe=data, start=None, stop=None)
+    print(data.shape)
+    data = select_data(dataframe=data, start="2017/05/13", stop="2017/05/20")
+    print(data.shape)
     print(data["Date"].head())
-
-    print(data.keys())
-
-    data = format_time_step(data=data, step="D")
-    print(data["Date"].head())
-

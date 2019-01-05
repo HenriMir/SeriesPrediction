@@ -27,22 +27,26 @@ def load_csv(csv_name, names_dict=None):
 
     if names_dict is None:
         names_dict = {}
-        names_dict[cst.DATE] = cst.DATE
-        names_dict[cst.PRICE] = cst.PRICE
-        names_dict[cst.OPEN] = cst.HIGH
-        names_dict[cst.LOW] = cst.LOW
-        names_dict[cst.CHANGE] = cst.CHANGE
+        for name in cst.possible_column_names:
+            names_dict[name] = name
 
     loading_path = os.path.join(cst.DATA_PATH, csv_name)
     df = pd.read_csv(loading_path, encoding='utf-8')
 
     for key in names_dict:
-        df.rename(index=str, columns={names_dict[key]: key})
+        df = df.rename(index=str, columns={names_dict[key]: key})
 
     #df = df.set_index(cst.DATE)
 
-    print(df.keys())
+    for key in df.keys():
+        if key not in cst.possible_column_names:
+            print(key)
+            raise Exception("column names")
+
     df[cst.DATE] = pd.to_datetime(df[cst.DATE], yearfirst=True)
+    #x = pd.DatetimeIndex(df[cst.DATE]).year
+    #print(type(x))
+    #print(x)
 
     return df
 
@@ -50,14 +54,11 @@ def load_csv(csv_name, names_dict=None):
 
 if __name__ == '__main__':
 
-    names_dict = {}
-    names_dict["Date"] = "2018.01.01"
-    names_dict["Hour"] = "2018.01.01"
 
-    df = load_csv(csv_name="DAT_MT_EURUSD_M1_201801.csv")
+    names_dict={"Date":"Local time"}
 
-
-
+    df = load_csv(csv_name="EURCAD_Ticks_05.12.2017-05.12.2017.csv", names_dict=names_dict)
+    df.to_csv("./data/csv_test.csv")
 
     print(df.shape)
     print(df.keys())
