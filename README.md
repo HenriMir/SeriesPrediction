@@ -30,7 +30,7 @@ each model is contained in a script and posses a function "predict" that takes a
 
 ### TODO
 
-- Intégrer dans la fonction load_data.load_csv un moyen que la date de sortie soit toujours au même format
+- RAjouter de quoi avoir un intervalle de temps stable à la srote de load_csv
 - Rajouter dans le script preprocessing une fonction qui coupe les données selon leur date
 - Rajouter dans le script preprocessing une fonction qui interpole les données manquantes (ex les we
 dans le cas du FOREX ou des actions)
