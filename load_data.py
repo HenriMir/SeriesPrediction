@@ -41,6 +41,7 @@ def load_csv(csv_name, names_dict=None):
 
     #df = df.set_index(cst.DATE)
 
+    print(df.keys())
     df[cst.DATE] = pd.to_datetime(df[cst.DATE], yearfirst=True)
 
     return df
@@ -49,9 +50,16 @@ def load_csv(csv_name, names_dict=None):
 
 if __name__ == '__main__':
 
-    df = load_csv(csv_name="EUR_USD Historical Data.csv")
-    print(df.keys())
-    print(df["Date"].head())
+    names_dict = {}
+    names_dict["Date"] = "2018.01.01"
+    names_dict["Hour"] = "2018.01.01"
 
-    print(type(df["Date"].values[0]))
+    df = load_csv(csv_name="DAT_MT_EURUSD_M1_201801.csv")
+
+
+
+
+    print(df.shape)
+    print(df.keys())
+
 

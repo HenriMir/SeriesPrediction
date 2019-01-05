@@ -19,6 +19,10 @@ The data is taken from Kaggle:
 https://www.kaggle.com/mczielinski/bitcoin-historical-data
 but can be any csv from financial data
 
+website: https://www.dukascopy.com/swiss/english/marketwatch/historical/
+good for FOREX data, ask, bid and volume per 15 minutes for few currencies (but not EURUSD)
+
+
 ### models
 
 each model is contained in a script and posses a function "predict" that takes a panda dataframe and predict the "Open" value of the next time interval
