@@ -2,17 +2,6 @@ import pandas as pd
 import os
 import constants as cst
 
-data_path = "./data/"
-date = "Date"
-close = "Dernier"
-opening = "Ouv."
-high = "Haut"
-low = "+ Bas"
-volume = "Vol."
-variation = "Variation %"
-
-data_names = [date, close, opening, high]
-
 
 def load_csv(csv_name, names_dict=None):
     """
@@ -36,7 +25,7 @@ def load_csv(csv_name, names_dict=None):
     for key in names_dict:
         df = df.rename(index=str, columns={names_dict[key]: key})
 
-    #df = df.set_index(cst.DATE)
+    # df = df.set_index(cst.DATE)
 
     for key in df.keys():
         if key not in cst.possible_column_names:
@@ -44,12 +33,27 @@ def load_csv(csv_name, names_dict=None):
             raise Exception("column names")
 
     df[cst.DATE] = pd.to_datetime(df[cst.DATE], yearfirst=True)
-    #x = pd.DatetimeIndex(df[cst.DATE]).year
-    #print(type(x))
-    #print(x)
+    # x = pd.DatetimeIndex(df[cst.DATE]).year
+    # print(type(x))
+    # print(x)
 
     return df
 
+
+def double_date_detected(df):
+
+    """
+    take the df output of load_csv and return True if a double date has been detected, False otherwise
+    :param df:
+    :return:
+    """
+
+    df_date = df[cst.DATE]
+    n_rows = df_date.shape[0]
+    df_date = df_date.drop_duplicates()
+    n_rows_without_duplicate = df_date.shape[0]
+
+    return n_rows != n_rows_without_duplicate
 
 
 if __name__ == '__main__':
@@ -58,7 +62,8 @@ if __name__ == '__main__':
     names_dict={"Date":"Local time"}
 
     df = load_csv(csv_name="EURCAD_Ticks_05.12.2017-05.12.2017.csv", names_dict=names_dict)
-    df.to_csv("./data/csv_test.csv")
+    print(double_date_detected(df))
+
 
     print(df.shape)
     print(df.keys())

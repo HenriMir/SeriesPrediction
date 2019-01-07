@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from load_data import load_csv
 import constants as cst
+import sys
 
 file_path = "./data/bitstampUSD_1-min_data_2012-01-01_to_2018-06-27.csv"
 
@@ -31,7 +32,21 @@ def select_data(dataframe, start=None, stop=None):
     return dataframe
 
 
+def fill_data(dataframe, step=None):
+    """
+
+    fill the dataframe with NaN based on step.
+
+    :param dataframe:
+    :param step: str: M, D, H if None, will detect the minimum step in the
+    :return:
+    """
+
+    raise Exception("TO DO")
+
+
 def format_time_step(data, step):
+
     """
     step must be M, D, H, min
     """
@@ -63,7 +78,7 @@ if __name__ == "__main__":
     data = load_csv(csv_name="EURCAD_Ticks_05.12.2017-05.12.2017.csv", names_dict=names_dict)
 
     print(data["Date"].head())
-
+    sys.exit(0)
     print(data.shape)
     data = select_data(dataframe=data, start="2017/05/13", stop="2017/05/20")
     print(data.shape)
