@@ -39,11 +39,11 @@ def load_csv(csv_name, names_dict=None):
             print(df.keys())
             raise Exception("column names")
 
-    df[cst.DATE] = pd.to_datetime(df[cst.DATE])
+    df[cst.DATE] = pd.to_datetime(df[cst.DATE], yearfirst=True)
 
     df[cst.YEAR] = df[cst.DATE].apply(lambda x: x.year).astype(str)
     df[cst.MONTH] = df[cst.DATE].apply(lambda x: x.month).astype(str)
-    df[cst.DAY] = df[cst.DATE].apply(lambda x: x.month).astype(str)
+    df[cst.DAY] = df[cst.DATE].apply(lambda x: x.day).astype(str)
 
     return df
 
@@ -66,11 +66,6 @@ def double_date_detected(df):
 
 if __name__ == '__main__':
 
-
-    names_dict = {'EUR/USD Close': cst.CLOSE,
-                  'EUR/USD High': cst.HIGH,
-                  'EUR/USD Low': cst.LOW}
-
     names_dict = { cst.CLOSE: 'EUR/USD Close',
                   cst.HIGH: 'EUR/USD High',
                   cst.LOW: 'EUR/USD Low'}
@@ -81,5 +76,5 @@ if __name__ == '__main__':
 
     print(df.shape)
     print(df.keys())
-
+    print(df.head(50))
 
