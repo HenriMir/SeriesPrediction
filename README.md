@@ -33,8 +33,8 @@ each model is contained in a script and posses a function "predict" that takes a
 
 ### TODO
 
-- Commencer avec un cours journalier qui sera plus simple
-- Rajouter colonnes Year, Month, Day à partir de la date en string avant de convertir en datetime la date
+
+- rajouter dans load_csv une fonction permettant de sortir le jour de la semaine en string
 - Rajouter de quoi avoir un intervalle de temps stable à la sortie de load_csv
 - Rajouter dans le script preprocessing une fonction qui coupe les données selon leur date
 - Rajouter dans le script preprocessing une fonction qui interpole les données manquantes (ex les we
