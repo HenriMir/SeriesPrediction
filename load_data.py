@@ -9,7 +9,12 @@ def load_csv(csv_name, names_dict=None):
     date format of the output is YYYY-MM-DD
     :param csv_name: str
     :param names_dict: dictionnaire de clés: Date, Price, Open, High, Low et Change avec en valeur
-                        le nom de la variable associee
+                        le nom de la variable associee. Ses clés doivent etre les noms voulues des colonnes
+                        et les valeurs, les noms actuels
+                        ex:     names_dict = {cst.CLOSE: 'EUR/USD Close',
+                                              cst.HIGH: 'EUR/USD High',
+                                              cst.LOW: 'EUR/USD Low'}
+
     :return: pandas df with column names: Date, Price, Open, High, Low et Change
 
     """
@@ -23,6 +28,7 @@ def load_csv(csv_name, names_dict=None):
     df = pd.read_csv(loading_path, encoding='utf-8')
 
     for key in names_dict:
+        print(names_dict[key], key)
         df = df.rename(index=str, columns={names_dict[key]: key})
 
     # df = df.set_index(cst.DATE)
@@ -30,12 +36,14 @@ def load_csv(csv_name, names_dict=None):
     for key in df.keys():
         if key not in cst.possible_column_names:
             print(key)
+            print(df.keys())
             raise Exception("column names")
 
-    df[cst.DATE] = pd.to_datetime(df[cst.DATE], yearfirst=True)
-    # x = pd.DatetimeIndex(df[cst.DATE]).year
-    # print(type(x))
-    # print(x)
+    df[cst.DATE] = pd.to_datetime(df[cst.DATE])
+
+    df[cst.YEAR] = df[cst.DATE].apply(lambda x: x.year).astype(str)
+    df[cst.MONTH] = df[cst.DATE].apply(lambda x: x.month).astype(str)
+    df[cst.DAY] = df[cst.DATE].apply(lambda x: x.month).astype(str)
 
     return df
 
@@ -59,9 +67,15 @@ def double_date_detected(df):
 if __name__ == '__main__':
 
 
-    names_dict={"Date":"Local time"}
+    names_dict = {'EUR/USD Close': cst.CLOSE,
+                  'EUR/USD High': cst.HIGH,
+                  'EUR/USD Low': cst.LOW}
 
-    df = load_csv(csv_name="EURCAD_Ticks_05.12.2017-05.12.2017.csv", names_dict=names_dict)
+    names_dict = { cst.CLOSE: 'EUR/USD Close',
+                  cst.HIGH: 'EUR/USD High',
+                  cst.LOW: 'EUR/USD Low'}
+
+    df = load_csv(csv_name="EURUSD_20180101_20190101_D.csv", names_dict=names_dict)
     print(double_date_detected(df))
 
 

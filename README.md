@@ -23,6 +23,9 @@ website: https://www.dukascopy.com/swiss/english/marketwatch/historical/
 good for FOREX data, ask, bid and volume per 15 minutes for few currencies (but not EURUSD)
 
 
+website: http://www.global-view.com/forex-trading-tools/forex-history/index.html
+good for FOREX data but only Close, High and Low, no Volume in data.
+
 ### models
 
 each model is contained in a script and posses a function "predict" that takes a panda dataframe and predict the "Open" value of the next time interval

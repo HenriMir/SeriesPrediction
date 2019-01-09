@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def mse(prediction, truth):
     return np.sum((prediction-truth)**2)
 

@@ -2,6 +2,7 @@ DATA_PATH = "./data/"
 DATE = "Date"
 PRICE = "PRICE"
 OPEN = "Open"
+CLOSE = "Close"
 HIGH = "High"
 LOW = "Low"
 ASK = "Ask"
@@ -17,6 +18,7 @@ HOUR = "Hour"
 possible_column_names = [DATE,
                          PRICE,
                          OPEN,
+                         CLOSE,
                          HIGH,
                          LOW,
                          ASK,
